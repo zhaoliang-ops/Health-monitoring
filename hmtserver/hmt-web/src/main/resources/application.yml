@@ -2,12 +2,12 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     username: rj_data_management_postgis_user
-    password: rjdaqing2019
-    url: jdbc:postgresql://39.105.24.224:5432/hmt
+    password: rjxxxing2019
+    url: jdbc:postgresql://39.105.xx.224:5432/hmt
 
   rabbitmq:
-    username: admin
-    password: admin
+    username: xxin
+    password: xxxn
     host: 39.105.24.224
     port: 5672
     publisher-confirms: true
@@ -23,7 +23,7 @@ spring:
     host: 39.105.24.224
     database: 8
     port: 6379
-    password: root
+    password: xxx
   cache:
     cache-names: menus_cache
 server:
