@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="hmt-model" />
+        <module name="hmt-mapper" />
+        <module name="hmt-web" />
+        <module name="hmt-service" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="hmt" target="1.8" />
+      <module name="hmt-mapper" target="1.8" />
+      <module name="hmt-model" target="1.8" />
+      <module name="hmt-service" target="1.8" />
+      <module name="hmt-web" target="1.8" />
+      <module name="hmtserver" target="1.8" />
+      <module name="mailserver" target="1.8" />
+      <module name="vhr-mapper" target="1.8" />
+      <module name="vhr-model" target="1.8" />
+      <module name="vhr-service" target="1.8" />
+      <module name="vhr-web" target="1.8" />
+      <module name="vhrserver" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="hmt-mapper" options="-parameters" />
+      <module name="hmt-model" options="-parameters" />
+      <module name="hmt-service" options="-parameters" />
+      <module name="hmt-web" options="-parameters" />
+      <module name="mailserver" options="-parameters" />
+      <module name="vhr-mapper" options="-parameters" />
+      <module name="vhr-model" options="-parameters" />
+      <module name="vhr-service" options="-parameters" />
+      <module name="vhr-web" options="-parameters" />
+    </option>
+  </component>
+</project>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/hmt.iml" filepath="$PROJECT_DIR$/hmt.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hmtserver/hmt-mapper/hmt-mapper.iml" filepath="$PROJECT_DIR$/hmtserver/hmt-mapper/hmt-mapper.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hmtserver/hmt-model/hmt-model.iml" filepath="$PROJECT_DIR$/hmtserver/hmt-model/hmt-model.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hmtserver/hmt-service/hmt-service.iml" filepath="$PROJECT_DIR$/hmtserver/hmt-service/hmt-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hmtserver/hmt-web/hmt-web.iml" filepath="$PROJECT_DIR$/hmtserver/hmt-web/hmt-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hmtserver/hmtserver.iml" filepath="$PROJECT_DIR$/hmtserver/hmtserver.iml" />
+    </modules>
+  </component>
+</project>
