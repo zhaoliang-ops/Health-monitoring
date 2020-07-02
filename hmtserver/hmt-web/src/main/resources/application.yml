@@ -1,0 +1,35 @@
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    username: rj_data_management_postgis_user
+    password: rjdaqing2019
+    url: jdbc:postgresql://39.105.24.224:5432/hmt
+
+  rabbitmq:
+    username: admin
+    password: admin
+    host: 39.105.24.224
+    port: 5672
+    publisher-confirms: true
+    publisher-returns: true
+    template:
+      mandatory: true  #失败返回需要为true
+      listener:
+        direct:
+          acknowledge-mode: manual  #手动 ack
+        simple:
+          acknowledge-mode: manual  #手动 ack
+  redis:
+    host: 39.105.24.224
+    database: 8
+    port: 6379
+    password: root
+  cache:
+    cache-names: menus_cache
+server:
+  port: 8081
+  compression:
+    enabled: true
+fastdfs:
+  nginx:
+    host: http://39.105.24.224/
