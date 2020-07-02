@@ -1,0 +1,14 @@
+org/gv_data/hmt/model/Role.class
+org/gv_data/hmt/model/MsgContent.class
+org/gv_data/hmt/model/MsgRevLog.class
+org/gv_data/hmt/model/SysMsg.class
+org/gv_data/hmt/model/User.class
+org/gv_data/hmt/model/MsgConstants.class
+org/gv_data/hmt/model/UserRole.class
+org/gv_data/hmt/model/Meta.class
+org/gv_data/hmt/model/MenuRole.class
+org/gv_data/hmt/model/RespPageBean.class
+org/gv_data/hmt/model/Message.class
+org/gv_data/hmt/model/RespBean.class
+org/gv_data/hmt/model/OpLog.class
+org/gv_data/hmt/model/Menu.class

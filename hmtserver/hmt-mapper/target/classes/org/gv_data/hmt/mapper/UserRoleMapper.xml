@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.gv_data.hmt.mapper.UserRoleMapper" >
+  <resultMap id="BaseResultMap" type="org.gv_data.hmt.model.UserRole" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_id" property="hrid" jdbcType="INTEGER" />
+    <result column="role_id" property="rid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, role_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_sub_user_role
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+</mapper>

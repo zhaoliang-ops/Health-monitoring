@@ -1,0 +1,8 @@
+org/gv_data/hmt/service/RoleService.class
+org/gv_data/hmt/service/MailSendLogService.class
+org/gv_data/hmt/task/MsgRevTask.class
+org/gv_data/hmt/utils/HrUtils.class
+org/gv_data/hmt/task/MsgRevConsumer.class
+org/gv_data/hmt/service/MenuService.class
+org/gv_data/hmt/service/UserService.class
+org/gv_data/hmt/config/RabbitMQConfig.class

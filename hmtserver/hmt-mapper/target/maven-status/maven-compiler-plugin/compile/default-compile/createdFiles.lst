@@ -1,0 +1,7 @@
+org/gv_data/hmt/mapper/UserRoleMapper.class
+org/gv_data/hmt/mapper/MenuMapper.class
+org/gv_data/hmt/mapper/RoleMapper.class
+org/gv_data/hmt/mapper/SysMsgMapper.class
+org/gv_data/hmt/mapper/UserMapper.class
+org/gv_data/hmt/mapper/MenuRoleMapper.class
+org/gv_data/hmt/mapper/MailSendLogMapper.class

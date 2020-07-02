@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.gv_data.hmt.mapper.MenuMapper" >
+  <resultMap id="BaseResultMap" type="org.gv_data.hmt.model.Menu" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="path" property="path" jdbcType="VARCHAR" />
+    <result column="component" property="component" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="iconCls" property="iconCls" jdbcType="VARCHAR" />
+    <result column="parentId" property="parentId" jdbcType="INTEGER" />
+    <result column="enabled" property="enabled" jdbcType="BIT" />
+    <association property="meta" javaType="org.gv_data.hmt.model.Meta">
+      <result column="keepAlive" property="keepAlive" jdbcType="BIT" />
+      <result column="requireAuth" property="requireAuth" jdbcType="BIT" />
+    </association>
+  </resultMap>
+  <resultMap id="Menus2" type="org.gv_data.hmt.model.Menu" extends="BaseResultMap">
+    <collection property="children" ofType="org.gv_data.hmt.model.Menu">
+      <id column="id2" property="id" jdbcType="INTEGER" />
+      <result column="url2" property="url" jdbcType="VARCHAR" />
+      <result column="path2" property="path" jdbcType="VARCHAR" />
+      <result column="component2" property="component" jdbcType="VARCHAR" />
+      <result column="name2" property="name" jdbcType="VARCHAR" />
+      <result column="iconCls2" property="iconCls" jdbcType="VARCHAR" />
+      <result column="parentId2" property="parentId" jdbcType="INTEGER" />
+      <result column="enabled2" property="enabled" jdbcType="BIT" />
+      <association property="meta" javaType="org.gv_data.hmt.model.Meta">
+        <result column="keepAlive2" property="keepAlive" jdbcType="BIT" />
+        <result column="requireAuth2" property="requireAuth" jdbcType="BIT" />
+      </association>
+    </collection>
+  </resultMap>
+  <resultMap id="MenuWithRole" type="org.gv_data.hmt.model.Menu" extends="BaseResultMap">
+    <collection property="roles" ofType="org.gv_data.hmt.model.Role">
+      <id column="rid" property="id"/>
+      <result column="rname" property="name"/>
+      <result column="rnameZh" property="nameZh"/>
+    </collection>
+  </resultMap>
+  <resultMap id="MenuWithChildren" type="org.gv_data.hmt.model.Menu" extends="BaseResultMap">
+    <id column="id1" property="id"/>
+    <result column="name1" property="name"/>
+    <collection property="children" ofType="org.gv_data.hmt.model.Menu">
+      <id column="id2" property="id"/>
+      <result column="name2" property="name"/>
+      <collection property="children" ofType="org.gv_data.hmt.model.Menu">
+        <id column="id3" property="id"/>
+        <result column="name3" property="name"/>
+      </collection>
+    </collection>
+  </resultMap>
+  <select id="getMidsByRid" resultType="java.lang.Integer">
+    select menu_id as mid from t_sub_menu_role where role_id=#{rid};
+  </select>
+  <select id="getAllMenus" resultMap="MenuWithChildren">
+select m1.id as id1,m1.name as name,m2.id as id2,m2.name as name2,m3.id as id3,m3.name as name3 from t_sub_menu m1,t_sub_menu m2,t_sub_menu m3
+where m1.id = m2."parentId" and m2.id = m3."parentId" and m3.enabled=true
+order by m1.id,m2.id,m3.id
+  </select>
+  <select id="getAllMenusWithRole" resultMap="MenuWithRole">
+select m.*,r.id as rid,r.name as rname,r.name_zh as rnameZh from t_sub_menu m,t_sub_menu_role mr,t_sub_role r where m.id = mr.menu_id and mr.role_id = r.id order by m.id
+  </select>
+  <select id="getMenusByHrId" resultMap="Menus2">
+    select
+    distinct m1.*,m2.id as id2,m2.component as component2,m2.enabled as enabled2,m2."iconCls" as iconCls2,
+                         m2."keepAlive" as keepAlive2,m2.name as name2,m2."parentId" as parentId2
+    ,m2."requireAuth" as requireAuth2,m2.path as path2
+    from t_sub_menu m1,t_sub_menu m2,t_sub_user_role tsur,t_sub_menu_role tsmr
+    where m1.id = m2."parentId" and tsur.user_id = #{hrid} and tsur.role_id = tsmr.role_id
+    and tsmr.menu_id = m2.id and m2.enabled=true
+    order by m1.id,m2.id
+  </select>
+  <sql id="Base_Column_List" >
+    id, url, path, component, name, iconCls, keepAlive, requireAuth, parentId, enabled
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from menu
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+</mapper>

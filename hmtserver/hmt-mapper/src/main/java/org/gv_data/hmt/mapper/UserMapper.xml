@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.gv_data.hmt.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="org.gv_data.hmt.model.User">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="phone" property="phone" jdbcType="CHAR"/>
+        <result column="telephone" property="telephone" jdbcType="VARCHAR"/>
+        <result column="address" property="address" jdbcType="VARCHAR"/>
+        <result column="enabled" property="enabled" jdbcType="BIT"/>
+        <result column="username" property="username" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="userface" property="userface" jdbcType="VARCHAR"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+    <resultMap id="HrWithRoles" type="org.gv_data.hmt.model.User" extends="BaseResultMap">
+        <collection property="roles" ofType="org.gv_data.hmt.model.Role">
+            <id column="id" property="id"/>
+            <result column="name" property="name"/>
+            <result column="nameZh" property="nameZh"/>
+        </collection>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, name, phone, telephone, address, enabled, username, password, userface, remark
+  </sql>
+    <select id="getAllHrsExceptCurrentHr" resultMap="BaseResultMap">
+        select * from user where id !=#{id};
+    </select>
+    <select id="getAllHrs" resultMap="HrWithRoles">
+        SELECT tsu.id,
+        tsu.name,
+        tsu.phone,
+        tsu.telephone,
+        tsu.address,
+        tsu.enabled,
+        tsu.username,
+        tsu.userface,
+        tsu.remark,
+        tsr.id as id,
+        tsr.name AS name,
+        tsr.name_zh AS nameZh
+        FROM
+        t_sub_user tsu LEFT JOIN t_sub_user_role tsur ON  tsu.id = tsur.user_id
+        LEFT JOIN t_sub_role tsr ON tsr.id= tsur.role_id!=#{hrid}
+        <if test="keywords!=null">
+            and tsu.name like concat('%',#{keywords},'%')
+        </if>
+        order by tsu.id
+    </select>
+    <select id="getHrRolesById" resultType="org.gv_data.hmt.model.Role">
+    select r.* from t_sub_role r,t_sub_user_role tsur where tsur.role_id=r.id and tsur.role_id=#{id}
+  </select>
+    <select id="loadUserByUsername" resultMap="BaseResultMap">
+    select * from t_sub_user where username=#{username}
+  </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from t_sub_user
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+</mapper>
